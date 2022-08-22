@@ -146,7 +146,8 @@ class MyPlaylistViewSet(ModelViewSet, GenericViewSet):
     queryset = MyPlaylist.objects.all()
     serializer_class = MyPlaylistSerializer
     permission_classes = [IsAuthenticated, IsAuthor]
-    if MyPlaylist.is_public == False:
+    myplaylist = get_object_or_404(MyPlaylist)
+    if myplaylist.is_public == False:
         def filter_queryset(self, queryset):
             new_queryset = queryset.filter(user=self.request.user)
             return new_queryset
