@@ -102,14 +102,14 @@ DATABASES = {
     }
 }
 
-import dj_database_url
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql'
-    }
-} 
-db = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db)
+# import dj_database_url
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql'
+#     }
+# } 
+# db = dj_database_url.config(conn_max_age=600)
+# DATABASES['default'].update(db)
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
@@ -167,8 +167,8 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-#     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-#     'PAGE_SIZE': 5,
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 5,
  }
 
 # Static files (CSS, JavaScript, Images)
@@ -188,17 +188,17 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-CORS_ALLOW_ORIGINS = [
-    'http://localhost:3000',
-    'http://localhost:3001', 
-    'http://127.0.0.1:3000',
-    'http://127.0.0.1:3001', 
-    'https://www.thunderclient.com',
-]
-CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000',
-    'http://localhost:3001', 
-    'http://127.0.0.1:3000',
-    'http://127.0.0.1:3001', 
-    'https://www.thunderclient.com',
-]
+# CORS_ALLOW_ORIGINS = [
+#     'http://localhost:3000',
+#     'http://localhost:3001', 
+#     'http://127.0.0.1:3000',
+#     'http://127.0.0.1:3001', 
+#     'https://www.thunderclient.com',
+# ]
+# CORS_ORIGIN_WHITELIST = [
+#     'http://localhost:3000',
+#     'http://localhost:3001', 
+#     'http://127.0.0.1:3000',
+#     'http://127.0.0.1:3001', 
+#     'https://www.thunderclient.com',
+# ]
