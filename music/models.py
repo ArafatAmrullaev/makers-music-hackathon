@@ -11,6 +11,9 @@ User = get_user_model()
 class Artist(models.Model):
     name = models.CharField(max_length=50)
     profile_pic = models.ImageField(upload_to='artists')
+    song = models.ManyToManyField(upload_to='artists', blank=True)
+    albums = models.ManyToManyField(upload_to='artists', blank=True)
+    
 
 class Song(models.Model):
     title = models.CharField(max_length=50)
