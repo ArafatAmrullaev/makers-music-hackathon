@@ -99,10 +99,10 @@ def toggle_like(request, a_id):
     return Response('Like toggled', 200)
 
 @api_view(['POST'])
-def add_rating(request, a_id):
+def add_rating(request, a_id, a_value):
     user = request.user
     album = get_object_or_404(Album, id=a_id)
-    value = request.POST.get('value')
+    value = request.POST.get(value=a_value)
 
     if not user.is_authenticated:
         raise ValueError('authentication credentials are not provided')
