@@ -46,6 +46,7 @@ class MyPlaylist(models.Model):
     cover = models.ImageField(upload_to='myplaylists', blank=True, null=True)
     created_at = models.DateField(auto_now=True)
     user = models.ForeignKey(User, related_name='myplaylists', on_delete=models.CASCADE)
+    is_public = models.BooleanField(blank=True, default=True)
 
 
 class Rating(models.Model):
