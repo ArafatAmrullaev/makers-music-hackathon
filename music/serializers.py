@@ -14,8 +14,9 @@ class ArtistSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         request = self.context.get('request')
         rep = super().to_representation(instance)
-        # rep['songs'] = SongSerializer(instance.song.all(), many=True).data
+        rep['songs'] = SongSerializer(instance.song.all(), many=True, context={'request': request}).data
         rep['albums'] = AlbumSerializer(instance.album).data
+        return rep
 
 class SongSerializer(serializers.ModelSerializer):
     class Meta:
