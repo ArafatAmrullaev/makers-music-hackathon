@@ -1,6 +1,5 @@
 from django.shortcuts import render
 
-from urllib import request
 from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from .serializers import ArtistSerializer, SongSerializer, AlbumSerializer, FavouriteSerializer, CommentSerializer, MyPlaylistSerializer
@@ -145,6 +144,6 @@ class FavouriteViewSet(mixins.ListModelMixin, GenericViewSet):
 
 class MyPlaylistViewSet(ModelViewSet, GenericViewSet):
     user = request.user
-    queryset = MyPlaylist.objects.all(user=user)
+    queryset = MyPlaylist.objects.all()
     serializer_class = MyPlaylistSerializer
     permission_classes = [IsAuthenticated, IsAuthor]
