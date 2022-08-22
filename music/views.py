@@ -150,7 +150,3 @@ class MyPlaylistViewSet(ModelViewSet, GenericViewSet):
     def filter_queryset(self, queryset):
         new_queryset = queryset.filter(user=self.request.user)
         return new_queryset
-# def get_serializer_context(self):
-#     context = super().get_serializer_context()
-#     context['user'] = self.request.user
-#     return context
