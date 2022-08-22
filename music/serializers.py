@@ -48,7 +48,7 @@ class AlbumSerializer(serializers.ModelSerializer):
 
 class MyPlaylistSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Comment
+        model = MyPlaylist
         exclude = ['user']
 
     def create(self, validated_data):
