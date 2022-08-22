@@ -2,6 +2,7 @@ from django.db import models
 
 from django.db import models
 from django.contrib.auth import get_user_model
+from .models import Song, Album
 # Create your models here.
 
 
@@ -11,8 +12,7 @@ User = get_user_model()
 class Artist(models.Model):
     name = models.CharField(max_length=50)
     profile_pic = models.ImageField(upload_to='artists')
-    song = models.ManyToManyField(upload_to='artists', blank=True)
-    albums = models.ManyToManyField(upload_to='artists', blank=True)
+
     
 
 class Song(models.Model):
