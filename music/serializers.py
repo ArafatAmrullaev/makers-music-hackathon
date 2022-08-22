@@ -50,10 +50,6 @@ class MyPlaylistSerializer(serializers.ModelSerializer):
     class Meta:
         model = MyPlaylist
         fields = '__all__'
-    def to_representation(self, instance):
-        rep = super().to_representation(instance)
-        rep['user'] = self.context.get('request').user
-        return rep
 
 
 class CommentSerializer(serializers.ModelSerializer):
