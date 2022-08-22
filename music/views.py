@@ -143,11 +143,10 @@ class FavouriteViewSet(mixins.ListModelMixin, GenericViewSet):
 
 
 class MyPlaylistViewSet(ModelViewSet, GenericViewSet):
-    user = request.user
     queryset = MyPlaylist.objects.all()
     serializer_class = MyPlaylistSerializer
     permission_classes = [IsAuthenticated, IsAuthor]
     def get_serializer_context(self):
         context = super().get_serializer_context()
-        context['request'] = self.request
+        context['user'] = self.user
         return context
