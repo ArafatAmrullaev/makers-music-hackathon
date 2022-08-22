@@ -148,7 +148,7 @@ class MyPlaylistViewSet(ModelViewSet, GenericViewSet):
     serializer_class = MyPlaylistSerializer
     permission_classes = [IsAuthenticated, IsAuthor]
     def filter_queryset(self, queryset):
-        new_queryset = queryset.filter(user=self.request.user.username)
+        new_queryset = queryset.filter(user=self.request.user)
         return new_queryset
 # def get_serializer_context(self):
 #     context = super().get_serializer_context()
