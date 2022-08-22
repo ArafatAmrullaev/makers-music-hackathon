@@ -41,10 +41,9 @@ class Album(models.Model):
 
 
 class MyPlaylist(models.Model):
-    user = models.ForeignKey(User, related_name='myplaylists', on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     song = models.ManyToManyField(Song, related_name="myplaylists")
-    cover = models.ImageField(upload_to='myplaylists')
+    cover = models.ImageField(upload_to='myplaylists', blank=True, null=True)
     created_at = models.DateField(auto_now=True)
 
 
