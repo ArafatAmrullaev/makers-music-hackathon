@@ -9,7 +9,7 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view, action
 from rest_framework.response import Response
-from .permissions import IsAdminOrReadOnly, IsAuthor, IsAuthorOrReadOnly
+from .permissions import IsAdminOrReadOnly, IsAuthor
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
 from rest_framework import filters, mixins
@@ -147,10 +147,10 @@ class MyPlaylistViewSet(ModelViewSet, GenericViewSet):
     queryset = MyPlaylist.objects.all()
     serializer_class = MyPlaylistSerializer
     permission_classes = [IsAuthenticated, IsAuthor]
-    # if object.is_public == False:
-    #     def filter_queryset(self, queryset):
-    #         new_queryset = queryset.filter(user=self.request.user.username)
-    #         return new_queryset
+    if object.is_public == False:
+        def filter_queryset(self, queryset):
+            new_queryset = queryset.filter(user=self.request.user.username)
+            return new_queryset
 # def get_serializer_context(self):
 #     context = super().get_serializer_context()
 #     context['user'] = self.request.user
