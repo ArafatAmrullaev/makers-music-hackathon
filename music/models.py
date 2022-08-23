@@ -1,3 +1,4 @@
+from re import M
 from django.db import models
 
 from django.db import models
@@ -12,7 +13,11 @@ class Artist(models.Model):
     name = models.CharField(max_length=50)
     profile_pic = models.ImageField(upload_to='artists')
 
-    
+
+class Genre(models.Model):
+    title = models.CharField(max_length=50)
+
+
 
 class Song(models.Model):
     title = models.CharField(max_length=50)
@@ -21,6 +26,7 @@ class Song(models.Model):
     year = models.DateField(auto_now=True)
     audiofile = models.FileField(upload_to='tracks')
     lyrics = models.TextField()
+    genre = models.ManyToManyField(Genre, related_name="songs")
 
 
 class Album(models.Model):
@@ -28,7 +34,7 @@ class Album(models.Model):
     artist = models.ForeignKey(Artist, related_name="albums", on_delete=models.CASCADE)
     song = models.ManyToManyField(Song, related_name="albums")
     cover = models.ImageField(upload_to='albums')
-    genre = models.CharField(max_length=50)
+    genre = models.ManyToManyField(Genre, related_name="albums")
     year = models.DateField(auto_now=True)
     desc = models.TextField(blank=True, null=True)
     @property

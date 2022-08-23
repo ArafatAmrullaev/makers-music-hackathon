@@ -3,8 +3,8 @@ from django.shortcuts import render
 
 from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
-from .serializers import ArtistSerializer, SongSerializer, AlbumSerializer, FavouriteSerializer, CommentSerializer, MyPlaylistSerializer
-from .models import Artist, MyPlaylist, Song, Album, Rating, Comment, Like, Favourite
+from .serializers import ArtistSerializer, SongSerializer, AlbumSerializer, FavouriteSerializer, CommentSerializer, MyPlaylistSerializer, GenreSerializer
+from .models import Artist, MyPlaylist, Song, Album, Rating, Comment, Like, Favourite, Genre
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view, action
@@ -34,6 +34,10 @@ class ArtistViewSet(ModelViewSet, GenericViewSet):
         serializer = ArtistSerializer(queryset, many=True, context={'request':request})
         return Response(serializer.data, 200)
 
+class GenreViewSet(mixins.CreateModelMixin, mixins.DestroyModelMixin, mixins.ListModelMixin, GenericViewSet):
+    queryset = Genre.objects.all()
+    serializer_class = GenreSerializer
+    permission_classes = [IsAdminOrReadOnly]
 
 class SongViewSet(ModelViewSet, GenericViewSet):
     queryset = Song.objects.all()

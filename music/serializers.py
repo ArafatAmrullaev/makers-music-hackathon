@@ -3,12 +3,18 @@ from multiprocessing import context
 from pyexpat import model
 from rest_framework import serializers
 
-from .models import Artist, Favourite, Song, Album, Comment, Rating, Like, MyPlaylist
+from .models import Artist, Favourite, Genre, Song, Album, Comment, Rating, Like, MyPlaylist
 
 
 class ArtistSerializer(serializers.ModelSerializer):
     class Meta:
         model = Artist
+        fields = '__all__'
+
+
+class GenreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Genre
         fields = '__all__'
     
 
