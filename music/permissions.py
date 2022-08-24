@@ -6,7 +6,7 @@ class IsAdminOrReadOnly(BasePermission):
         if request.method in permissions.SAFE_METHODS:
             return True
         else:
-            request.user.is_staff
+            request.user.is_staff and request.user
 
 class IsAuthor(BasePermission):
     def has_object_permission(self, request, view, obj):
