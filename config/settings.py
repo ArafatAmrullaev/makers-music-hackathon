@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
 
     'rest_framework',
+    'django_rest_passwordreset',
     'rest_framework_simplejwt',
     'drf_yasg',
 
