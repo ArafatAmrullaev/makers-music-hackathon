@@ -32,3 +32,13 @@ class RegisterSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         print('CREATING USER WITH DATA:', validated_data)
         return User.objects.create_user(**validated_data)
+
+
+class ChangePasswordSerializer(serializers.Serializer):
+    model = User
+
+    """
+    Serializer for password change endpoint.
+    """
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
