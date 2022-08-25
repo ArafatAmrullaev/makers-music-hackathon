@@ -14,7 +14,7 @@ from .serializers import ChangePasswordSerializer
 from rest_framework.permissions import IsAuthenticated  
 
 
-from .serializers import RegisterSerializer, ResetPasswordSerializer
+from .serializers import RegisterSerializer
 
 User = get_user_model()
 
@@ -35,13 +35,6 @@ def activate(request, activation_code):
     user.save()
     return redirect("http://127.0.0.1:3000/")
 
-# @api_view(["GET"])
-# def password_confirm(request, new_password):
-#     user = get_object_or_404(User, new_password=new_password)
-#     user.is_active = True
-#     user.activation_code = ''
-#     user.save()
-#     return redirect("https://makerskg-music.herokuapp.com/account/api/reset-password/")
 
 class ChangePasswordView(generics.UpdateAPIView):
     """
@@ -76,33 +69,3 @@ class ChangePasswordView(generics.UpdateAPIView):
             return Response(response)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-# class ResetPasswordView(generics.UpdateAPIView):
-#     """
-#     An endpoint for changing password.
-#     """
-#     serializer_class = ResetPasswordSerializer
-#     model = User
-#     permission_classes = (IsAuthenticated,)
-
-#     def get_object(self, queryset=None):
-#         obj = self.request.user
-#         return obj
-
-#     def update(self, request, *args, **kwargs):
-#         self.object = self.get_object()
-#         serializer = self.get_serializer(data=request.data)
-
-#         if serializer.is_valid():
-#             self.object.set_password(serializer.data.get("new_password"))
-#             self.object.save()
-#             response = {
-#                 'status': 'success',
-#                 'code': status.HTTP_200_OK,
-#                 'message': 'Password updated successfully',
-#                 'data': []
-#             }
-
-#             return Response(response)
-
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -42,8 +42,3 @@ class ChangePasswordSerializer(serializers.Serializer):
     """
     old_password = serializers.CharField(required=True)
     new_password = serializers.CharField(required=True)
-
-# class ResetPasswordSerializer(serializers.Serializer):
-#     model = User
-
-#     old_password = serializers.CharField(required=True)
