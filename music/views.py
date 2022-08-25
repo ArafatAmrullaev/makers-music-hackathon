@@ -62,11 +62,11 @@ class SongViewSet(ModelViewSet, GenericViewSet):
     @swagger_auto_schema(manual_parameters=[openapi.Parameter('genre', openapi.IN_QUERY, 'recommendations by genre', type=openapi.TYPE_STRING)])
     @action(methods=["GET"], detail=False)
     def recommendations(self, request,):
-        genre = request.query_params.get("title")
+        genre = request.query_params.get("genre")
         queryset = Genre.objects.all()
 
         if genre:
-            queryset = queryset.filter(title__icontains=genre)
+            queryset = queryset.filter(genre__icontains=genre)
 
         serializer = SongSerializer(queryset, many=True, context={'request':request})
         return Response(serializer.data, 200)
