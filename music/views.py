@@ -93,6 +93,18 @@ class AlbumViewSet(ModelViewSet, GenericViewSet):
         serializer = AlbumSerializer(queryset, many=True, context={'request':request})
         return Response(serializer.data, 200)
 
+    @swagger_auto_schema(manual_parameters=[openapi.Parameter('genre', openapi.IN_QUERY, 'recommendations by genre', type=openapi.TYPE_STRING, required=True)])
+    @action(methods=["GET"], detail=False)
+    def recommendations(self, request,):
+        genre_title = request.query_params.get("genre")
+        genre = Genre.objects.get(title__icontains=genre_title)
+
+        queryset = self.get_queryset()
+        queryset = queryset.filter(genre=genre)
+
+        serializer = AlbumSerializer(queryset, many=True, context={'request':request})
+        return Response(serializer.data, 200)
+
 class CommentViewSet(mixins.CreateModelMixin, mixins.DestroyModelMixin, mixins.UpdateModelMixin, GenericViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
