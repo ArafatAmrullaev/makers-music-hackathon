@@ -1,3 +1,4 @@
+from operator import ge
 from urllib import request
 from django.shortcuts import render
 
@@ -59,14 +60,14 @@ class SongViewSet(ModelViewSet, GenericViewSet):
         serializer = SongSerializer(queryset, many=True, context={'request':request})
         return Response(serializer.data, 200)
     
-    @swagger_auto_schema(manual_parameters=[openapi.Parameter('genre', openapi.IN_QUERY, 'recommendations by genre', type=openapi.TYPE_STRING)])
+    @swagger_auto_schema(manual_parameters=[openapi.Parameter('genre', openapi.IN_QUERY, 'recommendations by genre', type=openapi.TYPE_STRING, required=True)])
     @action(methods=["GET"], detail=False)
     def recommendations(self, request,):
-        genre = request.query_params.get("title")
-        queryset = Genre.objects.all()
+        genre_title = request.query_params.get("genre")
+        genre = Genre.objects.get(title__icontains=genre_title)
 
-        if genre:
-            queryset = queryset.filter(genre__icontains=genre)
+        queryset = self.get_queryset()
+        queryset = queryset.filter(genre=genre)
 
         serializer = SongSerializer(queryset, many=True, context={'request':request})
         return Response(serializer.data, 200)
