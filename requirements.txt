@@ -9,3 +9,6 @@ gunicorn
 whitenoise
 dj-database-url
 django-cors-headers
+redis
+django-celery-beat
+django-celery-result

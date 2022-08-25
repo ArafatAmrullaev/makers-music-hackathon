@@ -15,6 +15,10 @@ from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
 from rest_framework import filters, mixins
 
+import logging
+from django.http import HttpResponse
+logger = logging.getLogger('main')
+
 class ArtistViewSet(ModelViewSet, GenericViewSet):
     queryset = Artist.objects.all()
     serializer_class = ArtistSerializer
@@ -179,3 +183,7 @@ class MyPlaylistViewSet(ModelViewSet, GenericViewSet):
     def filter_queryset(self, queryset):
         new_queryset = queryset.filter(user=self.request.user)
         return new_queryset
+
+def login_view(request):
+    logger.info("Test!!")
+    return HttpResponse("Hello logging world.")
