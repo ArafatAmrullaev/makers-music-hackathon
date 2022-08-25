@@ -68,7 +68,7 @@ class SongViewSet(ModelViewSet, GenericViewSet):
         if genre:
             queryset = queryset.filter(genre__icontains=genre)
 
-        serializer = GenreSerializer(queryset, many=True, context={'request':request})
+        serializer = SongSerializer(queryset, many=True, context={'request':request})
         return Response(serializer.data, 200)
 
 
