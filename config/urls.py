@@ -38,5 +38,6 @@ urlpatterns = [
     path('docs/', schema_view.with_ui("swagger")),
     path('', include('music.urls')),
     path('login_view/', login_view),
+    path("account/", include("allauth.urls")),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
