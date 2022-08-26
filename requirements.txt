@@ -12,3 +12,4 @@ django-cors-headers
 redis
 django-celery-beat
 django-celery-results
+django-allauth
