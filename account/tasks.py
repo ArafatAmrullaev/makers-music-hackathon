@@ -9,7 +9,7 @@ def send_activation_code(user_id):
     user = User.objects.get(id=user_id)
     user.generate_activation_code()
     user.set_activation_code()
-    activation_url = f'http://127.0.0.1:8000/accounts/activate/{user.activation_code}'
+    activation_url = f'https://makerskg-music.herokuapp.com/account/activate/{user.activation_code}'
     message = f'Activate your account, following this link {activation_url}'
     send_mail("Activate account", message, "change@gmail.com", [user.email])
 
