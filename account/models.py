@@ -61,5 +61,5 @@ class User(AbstractUser):
             self.activation_code = code
             self.save()
     def send_activation_code(self):
-        send_activation_code.delay(self.id)
-
+        # send_activation_code.delay(self.id)
+        send_activation_code(self.id)
