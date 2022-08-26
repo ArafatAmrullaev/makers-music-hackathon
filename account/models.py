@@ -48,18 +48,31 @@ class User(AbstractUser):
 
     objects = UserManager()
 
-    @staticmethod
-    def generate_activation_code():
+    # @staticmethod
+    # def generate_activation_code():
+    #     from django.utils.crypto import get_random_string
+    #     code = get_random_string(8)
+    #     return code 
+    # def set_activation_code(self):
+    #     code = self.generate_activation_code()
+    #     if User.objects.filter(activation_code=code).exists():
+    #         self.set_activation_code()
+    #     else:
+    #         self.activation_code = code
+    #         self.save()
+    # def send_activation_code(self):
+    #     # send_activation_code.delay(self.id)
+    #     send_activation_code(self.id)
+
+    def generate_activation_code(self):
         from django.utils.crypto import get_random_string
-        code = get_random_string(8)
-        return code 
-    def set_activation_code(self):
-        code = self.generate_activation_code()
-        if User.objects.filter(activation_code=code).exists():
-            self.set_activation_code()
-        else:
-            self.activation_code = code
-            self.save()
+        code = get_random_string(length=8, allowed_chars='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
+        self.activation_code = code
+        self.save()
+    
     def send_activation_code(self):
-        # send_activation_code.delay(self.id)
-        send_activation_code(self.id)
+        from django.core.mail import send_mail
+        self.generate_activation_code()
+        activation_url = f'http://127.0.0.1:8000/account/activate/{self.activation_code}/'
+        message = f'Activate your account, following this link {activation_url}'
+        send_mail("Activate account", message, "spotify@gmail.com", [self.email])

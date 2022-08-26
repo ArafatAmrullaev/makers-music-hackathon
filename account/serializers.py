@@ -29,13 +29,13 @@ class RegisterSerializer(serializers.ModelSerializer):
             )
         return attrs
 
-    # def create(self, validated_data):
-    #     print('CREATING USER WITH DATA:', validated_data)
-    #     return User.objects.create_user(**validated_data)
-    def save(self):
-        data = self.validated_data
-        user = User.objects.create_user(**data)
-        user.send_activation_code()
+    def create(self, validated_data):
+        print('CREATING USER WITH DATA:', validated_data)
+        return User.objects.create_user(**validated_data)
+    # def save(self):
+    #     data = self.validated_data
+    #     user = User.objects.create_user(**data)
+    #     user.send_activation_code()
 
 
 class ChangePasswordSerializer(serializers.Serializer):
