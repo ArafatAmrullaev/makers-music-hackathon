@@ -34,7 +34,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('account/', include("allauth.urls")),
+    path('accounts/', include("allauth.urls")),
     path('accounts/', include('accounts.urls')),
     path('docs/', schema_view.with_ui("swagger")),
     path('', include('music.urls')),
