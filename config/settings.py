@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'drf_yasg',
     'corsheaders',
+    'django_celery_beat',
+    'django_celery_results',
 
     'account',
     'music',
@@ -104,14 +106,14 @@ DATABASES = {
     }
 }
 
-import dj_database_url
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql'
-    }
-} 
-db = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db)
+# import dj_database_url
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql'
+#     }
+# } 
+# db = dj_database_url.config(conn_max_age=600)
+# DATABASES['default'].update(db)
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
