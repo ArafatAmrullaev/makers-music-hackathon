@@ -12,15 +12,15 @@ class ArtistSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-# class GenreSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Genre
-#         fields = '__all__'
+class GenreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Genre
+        fields = '__all__'
     
 
-# class SongSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Song
+class SongSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Song
         fields = '__all__'
     def to_representation(self, instance):
         rep = super().to_representation(instance)
