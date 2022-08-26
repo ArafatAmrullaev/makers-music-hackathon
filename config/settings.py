@@ -71,9 +71,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-AUTHENTICATION_BACKENDS = (
-    "allauth.account.auth_backends.AuthenticationBackend",
-)
+# AUTHENTICATION_BACKENDS = (
+#     "allauth.account.auth_backends.AuthenticationBackend",
+# )
 
 SITE_ID = 1
 ACCOUNT_EMAIL_VERIFICATION = "none"
