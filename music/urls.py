@@ -24,6 +24,5 @@ urlpatterns = [
     path('albums/add_rating/<int:a_id>/', add_rating),
     path('song/add_to_favourite/<int:s_id>/', add_to_favourite),
     path('', include(router4.urls)),
-    path("account/", include("allauth.urls")),
     path("", Home.as_view(), name="home"),
 ]
