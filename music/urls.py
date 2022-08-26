@@ -14,6 +14,8 @@ router.register('comments', CommentViewSet)
 router.register('myplaylists', MyPlaylistViewSet)
 router.register('genre', GenreViewSet)
 
+from .views import Home # new
+
 urlpatterns = [
     path('', include(router.urls)),
     path('', include(router2.urls)),
@@ -21,5 +23,6 @@ urlpatterns = [
     path('albums/toggle_like/<int:a_id>/', toggle_like),
     path('albums/add_rating/<int:a_id>/', add_rating),
     path('song/add_to_favourite/<int:s_id>/', add_to_favourite),
-    path('', include(router4.urls))
+    path('', include(router4.urls)),
+    path("", Home.as_view(), name="home"),
 ]

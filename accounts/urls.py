@@ -4,7 +4,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from .views import RegisterAPIView, activate
 
 from .views import ChangePasswordView
-from .views import Home # new
+
 
 urlpatterns = [
     path('register/', RegisterAPIView.as_view()),
@@ -12,5 +12,4 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view()),
     path('api/token/refresh/', TokenRefreshView.as_view()),
     path('api/change-password/', ChangePasswordView.as_view(), name='change-password'),
-    path("", Home.as_view(), name="home"),
     ]
