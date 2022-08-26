@@ -187,3 +187,27 @@ class MyPlaylistViewSet(ModelViewSet, GenericViewSet):
 def login_view(request):
     logger.info("Test!!")
     return HttpResponse("Hello logging world.")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+from django.views.generic import TemplateView
+
+
+class Home(TemplateView):
+    template_name = "home.html"

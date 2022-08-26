@@ -70,8 +70,3 @@ class ChangePasswordView(generics.UpdateAPIView):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-from django.views.generic import TemplateView
-
-
-class Home(TemplateView):
-    template_name = "home.html"
