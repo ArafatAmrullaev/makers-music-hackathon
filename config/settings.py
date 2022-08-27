@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework_simplejwt',
+    'django_rest_passwordreset',
     'drf_yasg',
     'corsheaders',
     'django_celery_beat',
