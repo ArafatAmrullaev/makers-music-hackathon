@@ -13,4 +13,4 @@ redis
 django-celery-beat
 django-celery-results
 django-allauth
-django_rest_passwordreset
+django-rest-passwordreset
