@@ -73,6 +73,6 @@ class User(AbstractUser):
     def send_activation_code(self):
         from django.core.mail import send_mail
         self.generate_activation_code()
-        activation_url = f'https://makerskg-music.herokuapp.com/activate/{self.activation_code}/'
+        activation_url = f'https://makerskg-music.herokuapp.com/accounts/activate/{self.activation_code}/'
         message = f'Activate your account, following this link {activation_url}'
         send_mail("Activate account", message, "spotify@gmail.com", [self.email])
