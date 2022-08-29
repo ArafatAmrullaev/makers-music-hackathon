@@ -22,7 +22,7 @@ urlpatterns = [
     path('', include(router3.urls)),
     path('albums/toggle_like/<int:a_id>/', toggle_like),
     path('albums/add_rating/<int:a_id>/', add_rating),
-    path('song/add_to_favourite/<int:s_id>/', add_to_favourite),
+    path('songs/add_to_favourite/<int:s_id>/', add_to_favourite),
     path('', include(router4.urls)),
     path("", Home.as_view(), name="home"),
 ]
