@@ -5,3 +5,12 @@ djangorestframework-simplejwt
 pillow
 drf-yasg
 python-decouple
+gunicorn
+whitenoise
+dj-database-url
+django-cors-headers
+redis
+django-celery-beat
+django-celery-results
+django-allauth
+django-rest-passwordreset
